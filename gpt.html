@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My OS</title>
+  <link rel="stylesheet" href="gpt.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pO4+FqkVJc8N9nSxyHwDq6ZgXM74Ukf3tX8fblL7I6L6Z3E3c6B3E7r5xR5oFbIh7uHLl2PBgkUxJbwN1Qd8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&display=swap" rel="stylesheet"/>
+
+  <script>
+    function showTime() {
+      const now = new Date();
+      const date = now.toDateString(); 
+      const time = now.toLocaleTimeString(); 
+      document.getElementById("clock").textContent = date + " " + time;
+    }
+    setInterval(showTime, 1000);
+    document.addEventListener("DOMContentLoaded", showTime);
+  </script>
+</head>
+<body>
+  <div class="content">
+    <!-- Desktop Icons -->
+    <a href="#" class="an-p draggable"><img src="/assets/icons/computer.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/folder.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/pi.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/blender.png" alt="" class="icons"></a>
+    <a href="https://poki.com/en/g/venge-io" class="an-p draggable"><img src="/assets/icons/game.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/reason.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/note.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/adobe.png" alt="" class="icons"></a>
+    <a href="#" class="an-p draggable"><img src="/assets/icons/picasa.png" alt="" class="icons"></a>
+
+    <!-- Clock + System Icons -->
+    <div class="sdiv">
+      <div id="clock"></div>
+      <div class="line"></div>
+      <div class="ico">
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-volume-high"></i>
+        <i class="fa-solid fa-battery-full"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <nav>
+    <!-- Power & Search -->
+    <div class="first">
+      <input type="checkbox" class="hide" id="hid">
+      <label for="hid" style="display:flex;align-items:center;">
+        <img src="/assets/icons/2142692_off_power_switch_switcher_icon.png" alt="" class="icons">
+      </label>
+      <div class="menu">
+        <p class="men-opt"><img src="/assets/icons/2142692_off_power_switch_switcher_icon.png" alt="" class="icon2"> Shut down</p>
+        <p class="men-opt"><img src="/assets/icons/restart.png" alt="" class="icon2"> Restart</p>
+        <p class="men-opt"><img src="/assets/icons/sleep.png" alt="" class="icon2"> Sleep</p>
+      </div>
+      <input type="search" class="search" placeholder="Search Here">
+    </div>
+
+    <!-- Pinned Apps -->
+    <div class="pin">
+      <img src="/assets/icons/37062_setting_config_gears_icon.png" alt="" class="icons">
+      <a href="https://www.google.com/"><img src="/assets/icons/crome.png" alt="" class="icons"></a>
+      <a href="https://www.firefox.com/"><img src="/assets/icons/fire fox.png" alt="" class="icons"></a>
+      <a href="https://mail.google.com/"><img src="/assets/icons/mail.png" alt="" class="icons"></a>
+      <a href="https://github.com/"><img src="/assets/icons/git.png" alt="" class="icons"></a>
+    </div>
+
+    <!-- Notifications -->
+    <div class="not">
+      <input type="checkbox" id="bell">
+      <label for="bell" style="display:flex;">
+        <img src="/assets/icons/bell.png" alt="" class="icons">
+        <div class="badge">1</div>
+      </label>
+      <div class="nf-bar">
+        <div class="nf-top">
+          <h3 class="font-1">Notifications</h3>
+          <div class="n-opt">
+            <img src="/assets/icons/sy-bell.png" class="icon-nf">
+            <button class="cleare-nf">Clear all</button>
+          </div>
+        </div>
+        <div class="mess-1">
+          <h4 class="font-1" style="display:flex;align-items:center;gap:0.2rem;">
+            <img src="/assets/icons/Whatsapp.png" class="hed-icon"> WhatsApp
+          </h4>
+          <div class="mess-box">
+            <p class="font-1" id="heading" style="display:flex;align-items:center;gap:0.2rem;">
+              <img src="/assets/icons/girl-2.png" class="dp">Known
+            </p>
+            <p class="font-1" id="message">Good Night ❤️</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Drag & Drop Script -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".draggable").forEach(icon => {
+        icon.addEventListener("mousedown", function(e) {
+          let shiftX = e.clientX - icon.getBoundingClientRect().left;
+          let shiftY = e.clientY - icon.getBoundingClientRect().top;
+
+          icon.style.position = "absolute";
+          icon.style.zIndex = 1000;
+
+          function moveAt(pageX, pageY) {
+            icon.style.left = pageX - shiftX + "px";
+            icon.style.top = pageY - shiftY + "px";
+          }
+
+          moveAt(e.pageX, e.pageY);
+
+          function onMouseMove(e) {
+            moveAt(e.pageX, e.pageY);
+          }
+
+          document.addEventListener("mousemove", onMouseMove);
+
+          icon.onmouseup = function() {
+            document.removeEventListener("mousemove", onMouseMove);
+            icon.onmouseup = null;
+          };
+        });
+
+        icon.ondragstart = () => false;
+      });
+    });
+  </script>
+</body>
+</html>

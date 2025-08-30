@@ -346,6 +346,15 @@ input[type="search"] {
   cursor: pointer;
 }
 
+.draggable {
+  position: absolute;  /* icons ko free move karne ke liye */
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
 @media (min-height: 700px) {
   .nf-bar {
     height: 75vh;
